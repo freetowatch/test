@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Search Results</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #e44d26;
+            margin-bottom: 20px;
+        }
+
+        #resultContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    transform: translateY(1040px); /* Use translateY for vertical translation */
+    background-image: url(foodimages/Food.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 20px; /* Add padding to allow background to cover the white spaces */
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 991px) {
+    #resultContainer {
+        grid-template-columns: 1fr;
+        transform: translateY(3090px); /* Adjust the vertical translation */
+    }
+}
+
+
+        .recipe {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .recipe:hover {
+            transform: scale(1.05);
+        }
+
+        .recipe img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .recipe-content {
+            padding: 20px;
+        }
+
+        .recipe h2 {
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .recipe p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .recipe .read-more {
+            display: inline-block;
+            color: #e44d26;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .recipe .read-more:hover {
+            color: #c0392b;
+        }
+
+        /* Media Query for Mobile Devices */
+        @media (max-width: 991px) {
+            #resultContainer {
+                grid-template-columns: 1fr;
+                transform: translate(-0px, 3090px);
+            }
+        }
+    </style>
+    <script async src="https://ss.mndsrv.com/static/bb48ccef-21e8-4c07-b64f-2842b0247ce2.js"></script>
+</head>
+<body>
+    <h1>Recipe Search Results</h1>
+    <div id="resultContainer"></div>
+
+    <script>
+        // Your JavaScript code remains unchanged
+        const urlParams = new URLSearchParams(window.location.search);
+        const query = urlParams.get('query');
+        const apiKey = '31f53b3ca4f943449727a5b09e2732d8';
+
+        fetch(`https://api.spoonacular.com/recipes/search?apiKey=${apiKey}&query=${query}&number=40`)
+            .then(response => response.json())
+            .then(data => {
+                const resultContainer = document.getElementById('resultContainer');
+
+                if (data.results) {
+                    data.results.forEach(recipe => {
+                        const recipeDiv = document.createElement('div');
+                        recipeDiv.classList.add('recipe');
+                        recipeDiv.innerHTML = `
+                            <h2>${recipe.title}</h2>
+                            <p>${recipe.summary}</p>
+                            <a href="${recipe.sourceUrl}" class="read-more" target="_blank">Read more</a>
+                        `;
+                        resultContainer.appendChild(recipeDiv);
+                    });
+                } else {
+                    resultContainer.innerHTML = '<p>No recipes found.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    </script>
+    <a href="search.html">Back To Search</a>
+</body>
+</html>

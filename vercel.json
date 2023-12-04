@@ -2,7 +2,35 @@
     "rewrites": [
       {
         "source": "/(.*)",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/(.*)",
         "destination": "/New.html"
+      },
+      {
+        "source": "/(.*)",
+        "destination": "/movie_details.html"
+      },
+      {
+        "source": "/(.*)",
+        "destination": "/release date.html"
+      },
+      {
+        "source": "/(.*)",
+        "destination": "/results.html"
+      },
+      {
+        "source": "/(.*)",
+        "destination": "/search.html"
+      },
+      {
+        "source": "/(.*)",
+        "destination": "/syseme.html"
+      },
+      {
+        "source": "/(.*)",
+        "destination": "/Trailers.html"
       }
     ]
   }

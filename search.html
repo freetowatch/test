@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Search</title>
+    <style>
+       body {
+            background-image: url(foodimages/Screenshot\ \(173\).png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .links {
+            margin-top: 0px;
+        }
+
+        .links a {
+            display: inline-block;
+            margin-right: 30px;
+            font-size: 1.5em;
+            color: blue;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            transform: translate(410px, -1px);
+        }
+
+        .links a:hover {
+            color: #e44d26;
+            text-decoration: none;
+        }
+
+        label {
+            font-size: 1.2em;
+            margin-right: 10px;
+            color: blue;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #e44d26;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: blue;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+        @media (max-width: 991px) {
+            body {
+            background-image: url(foodimages/Screenshot\ \(173\).png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-repeat: repeat-y;
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .links {
+            margin-top: 0px;
+        }
+
+        .links a {
+            display: inline-block;
+            margin-right: 20px;
+            font-size: 1.5em;
+            color: blue;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            transform: translate(10px, -1px);
+        }
+
+        .links a:hover {
+            color: #e44d26;
+            text-decoration: none;
+        }
+
+        label {
+            font-size: 1.2em;
+            margin-right: 10px;
+            color: blue;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #e44d26;
+            border-radius: 4px;
+            margin-right: 10px;
+            transform: translate(4px, 1px);
+        }
+
+        button {
+            padding: 10px 10px;
+            font-size: 0.6em;
+            background-color: blue;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 50px;
+            height: 40px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+        }
+    </style>
+<script async src="https://ss.mndsrv.com/static/bb48ccef-21e8-4c07-b64f-2842b0247ce2.js"></script>
+<script async src="https://ss.mndsrv.com/native.js"></script>
+</head>
+<body>
+    <div class="links">
+      <hr>
+        <a href="New.html">News</a>
+        <a href="search.html">Food</a>
+        <a href="main.html">Movies</a>
+        <a href="systeme.html">Buy Products</a>
+        <hr>
+    </div>
+    <form action="results.html" method="get">
+        <label for="query"></label>
+        <input type="text" id="query" name="query" placeholder="Enter Search" required>
+        <button type="submit" style="transform: translate(-10px,0px);">Search</button>
+    </form>
+    <div data-mndazid="06100970-09a3-43aa-b3c9-6522ddc6790c"></div>
+</body>
+</html>
