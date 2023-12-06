@@ -72,13 +72,35 @@
 </style>
 <script async src="https://ss.mndsrv.com/static/bb48ccef-21e8-4c07-b64f-2842b0247ce2.js"></script>
 <script async src="https://ss.mndsrv.com/banner.js"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Update all links to remove the ".html" extension
+            const links = document.querySelectorAll('a');
+            links.forEach(link => {
+                link.href = link.href.replace(/\.html$/, '');
+                link.addEventListener('click', handleLinkClick);
+            });
+
+            function handleLinkClick(event) {
+                event.preventDefault();
+                const url = event.target.href;
+                history.pushState(null, null, url);
+                fetchData(); // Assuming you want to fetch data when a link is clicked
+            }
+        });
+
+        function fetchData() {
+            // Your existing fetchData function to fetch and update content
+            // ...
+        }
+    </script>
 </head>
 <body>
     <h1>ɴᴇᴡꜱng</h1>
     <hr>
     <a href="index.html">News</a>
     <a href="search.html">Food</a>
-    <a href="New.html">Movies</a>
+    <a href="New">Movies</a>
 
   
     <hr>
