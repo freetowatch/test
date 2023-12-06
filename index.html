@@ -74,8 +74,8 @@
 <script async src="https://ss.mndsrv.com/banner.js"></script>
  <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Update all links to remove the ".html" extension
-            const links = document.querySelectorAll('a');
+            // Update only links with .html extension
+            const links = document.querySelectorAll('a[href$=".html"]');
             links.forEach(link => {
                 link.addEventListener('click', handleLinkClick);
             });
@@ -83,8 +83,12 @@
             function handleLinkClick(event) {
                 event.preventDefault();
                 const url = event.target.href.replace(/\.html$/, ''); // Remove '.html' for the target page
-                window.history.pushState(null, null, url);
+                updateAddressBar(url);
                 fetchContent(url); // Assuming you want to fetch data when a link is clicked
+            }
+
+            function updateAddressBar(url) {
+                window.history.pushState(null, null, url);
             }
 
             function fetchContent(url) {
@@ -100,9 +104,9 @@
 <body>
     <h1>ɴᴇᴡꜱng</h1>
     <hr>
-    <a href="index">News</a>
-    <a href="search">Food</a>
-    <a href="New">Movies</a>
+    <a href="index.html">News</a>
+    <a href="search.html">Food</a>
+    <a href="New.html">Movies</a>
   
     <hr>
     <div class="die">
