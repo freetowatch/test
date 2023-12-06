@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INews</title>
+    <title>Newsng</title>
     <link rel="stylesheet" href="style.css">
     <script async src="https://ss.mndsrv.com/banner.js"></script>
     <style>
@@ -72,12 +72,38 @@
 </style>
 <script async src="https://ss.mndsrv.com/static/bb48ccef-21e8-4c07-b64f-2842b0247ce2.js"></script>
 <script async src="https://ss.mndsrv.com/banner.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Update all links to handle click events
+        const links = document.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', handleLinkClick);
+        });
+
+        function handleLinkClick(event) {
+            event.preventDefault();
+            const url = event.target.href; // Get the target URL
+            fetchContent(url);
+        }
+
+        function fetchContent(url) {
+            // Use fetch or other AJAX methods to load the content
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.body.innerHTML = data;
+                    history.pushState(null, null, url);
+                })
+                .catch(error => console.error('Error fetching content:', error));
+        }
+    });
+</script>
 </head>
 <body>
     <h1>ɴᴇᴡꜱng</h1>
     <hr>
-    <a href="index.html">News</a>
-    <a href="search.html">Food</a>
+    <a href="index">News</a>
+    <a href="search">Food</a>
     <a href="New">Movies</a>
   
     <hr>
