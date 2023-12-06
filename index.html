@@ -77,22 +77,21 @@
             // Update all links to remove the ".html" extension
             const links = document.querySelectorAll('a');
             links.forEach(link => {
-                link.href = link.href.replace(/\.html$/, '');
                 link.addEventListener('click', handleLinkClick);
             });
 
             function handleLinkClick(event) {
                 event.preventDefault();
-                const url = event.target.href;
+                const url = event.target.href.replace(/\.html$/, ''); // Remove '.html' for the target page
                 history.pushState(null, null, url);
                 fetchData(); // Assuming you want to fetch data when a link is clicked
             }
-        });
 
-        function fetchData() {
-            // Your existing fetchData function to fetch and update content
-            // ...
-        }
+            function fetchData() {
+                // Your existing fetchData function to fetch and update content
+                // ...
+            }
+        });
     </script>
 </head>
 <body>
