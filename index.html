@@ -3,49 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newsng</title>
+    <title>INews</title>
     <link rel="stylesheet" href="style.css">
     <script async src="https://ss.mndsrv.com/banner.js"></script>
-    
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Update all links to remove the ".html" extension
-            const links = document.querySelectorAll('a');
-            links.forEach(link => {
-                link.addEventListener('click', handleLinkClick);
-            });
-
-            function handleLinkClick(event) {
-                event.preventDefault();
-                const url = event.target.href.replace(/\.html$/, ''); // Remove '.html' for the target page
-                fetchContent(url);
-            }
-
-            function fetchContent(url) {
-                fetch(url)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! Status: ${response.status}`);
-                        }
-                        return response.text();
-                    })
-                    .then(data => {
-                        document.body.innerHTML = data;
-                        history.pushState(null, null, url);
-                    })
-                    .catch(error => {
-                        console.error('Error fetching content:', error);
-                    });
-            }
-
-            // Handle popstate event to update the content when using browser navigation buttons
-            window.addEventListener('popstate', function(event) {
-                const url = window.location.pathname;
-                fetchContent(url);
-            });
-        });
-    </script>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -116,10 +76,9 @@
 <body>
     <h1>ɴᴇᴡꜱng</h1>
     <hr>
-    <a href="index.html">News</a>
-    <a href="search.html">Food</a>
-    <a href="New.html">Movies</a>
-
+    <a href="index">News</a>
+    <a href="search">Food</a>
+    <a href="New">Movies</a>
   
     <hr>
     <div class="die">
@@ -127,47 +86,45 @@
 </div>
     <div id="news-container"></div>
 
-    
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Replace 'YOUR_API_KEY' with your actual GNews API key
-        const apiKey = 'ba562d1933bd35f20de59b6de4388f24';
-        const apiUrl = `https://gnews.io/api/v4/top-headlines?token=${apiKey}&country=us&max=20`;
+    <script>  
+        document.addEventListener('DOMContentLoaded', function () {
+            // Replace 'YOUR_API_KEY' with your actual GNews API key
+            const apiKey = 'ba562d1933bd35f20de59b6de4388f24';
+            const apiUrl = `https://gnews.io/api/v4/top-headlines?token=${apiKey}&country=us&max=20`;
 
-        // Function to fetch data from the GNews API
-        const fetchData = async () => {
-            try {
-                const response = await fetch(apiUrl);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
+            // Function to fetch data from the GNews API
+            const fetchData = async () => {
+                try {
+                    const response = await fetch(apiUrl);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+
+                    // Display news articles on the page
+                    const newsContainer = document.getElementById('news-container');
+                    data.articles.forEach(article => {
+                        const articleDiv = document.createElement('div');
+                        articleDiv.innerHTML = `
+                            <h2>${article.title}</h2>
+                            <p>${article.description}</p>
+                            <a href="${article.url}" target="_blank">Read more</a>
+                            <hr>
+                        `;
+                        newsContainer.appendChild(articleDiv);
+                    });
+                } catch (error) {
+                    console.error('Error fetching news:', error);
                 }
+            };
 
-                const data = await response.json();
+            // Initial fetch when the page loads
+            fetchData();
 
-                // Display news articles on the page
-                const newsContainer = document.getElementById('news-container');
-                newsContainer.innerHTML = ''; // Clear existing content before updating
-                data.articles.forEach(article => {
-                    const articleDiv = document.createElement('div');
-                    articleDiv.innerHTML = `
-                        <h2>${article.title}</h2>
-                        <p>${article.description}</p>
-                        <a href="${article.url}" target="_blank">Read more</a>
-                        <hr>
-                    `;
-                    newsContainer.appendChild(articleDiv);
-                });
-            } catch (error) {
-                console.error('Error fetching news:', error);
-            }
-        };
-
-        // Initial fetch when the page loads
-        fetchData();
-
-        // Fetch data every 6 hours (6 * 60 * 60 * 1000 milliseconds)
-        setInterval(fetchData, 6 * 60 * 60 * 1000);
-    });
-</script>
+            // Optionally, you can fetch data periodically using setInterval
+            // setInterval(fetchData, 3600000); // Fetch data every hour (3600000 milliseconds)
+        });
+    </script>
 </body>
 </html>

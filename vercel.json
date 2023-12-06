@@ -26,10 +26,6 @@
       },
       {
         "source": "/(.*)",
-        "destination": "/syseme.html"
-      },
-      {
-        "source": "/(.*)",
         "destination": "/Trailers.html"
       }
     ]
