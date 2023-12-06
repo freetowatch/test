@@ -6,6 +6,39 @@
     <title>Newsng</title>
     <link rel="stylesheet" href="style.css">
     <script async src="https://ss.mndsrv.com/banner.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Update all links to remove the ".html" extension
+            const links = document.querySelectorAll('a');
+            links.forEach(link => {
+                link.addEventListener('click', handleLinkClick);
+            });
+
+            function handleLinkClick(event) {
+                event.preventDefault();
+                const url = event.target.href.replace(/\.html$/, ''); // Remove '.html' for the target page
+                fetchContent(url);
+            }
+
+            function fetchContent(url) {
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        document.body.innerHTML = data;
+                        history.pushState(null, null, url);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching content:', error);
+                    });
+            }
+        });
+    </script>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -72,21 +105,6 @@
 </style>
 <script async src="https://ss.mndsrv.com/static/bb48ccef-21e8-4c07-b64f-2842b0247ce2.js"></script>
 <script async src="https://ss.mndsrv.com/banner.js"></script>
-      <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Update all links to remove the ".html" extension
-            const links = document.querySelectorAll('a');
-            links.forEach(link => {
-                link.addEventListener('click', handleLinkClick);
-            });
-
-            function handleLinkClick(event) {
-                event.preventDefault();
-                const url = event.target.href.replace(/\.html$/, ''); // Remove '.html' for the target page
-                window.location.href = url;
-            }
-        });
-    </script>
 </head>
 <body>
     <h1>ɴᴇᴡꜱng</h1>
