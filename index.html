@@ -72,35 +72,7 @@
 </style>
 <script async src="https://ss.mndsrv.com/static/bb48ccef-21e8-4c07-b64f-2842b0247ce2.js"></script>
 <script async src="https://ss.mndsrv.com/banner.js"></script>
- <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Update only links with .html extension
-            const links = document.querySelectorAll('a[href$=".html"]');
-            links.forEach(link => {
-                link.addEventListener('click', handleLinkClick);
-            });
-
-            function handleLinkClick(event) {
-                event.preventDefault();
-                const url = event.target.href.replace(/\.html$/, ''); // Remove '.html' for the target page
-                updateAddressBar(url);
-                fetchContent(url); // Assuming you want to fetch data when a link is clicked
-            }
-
-            function updateAddressBar(url) {
-                window.history.pushState(null, null, url);
-            }
-
-            function fetchContent(url) {
-                // Your existing fetchData function to fetch and update content
-                // ...
-
-                // For testing purposes, let's log the URL to the console
-                console.log('Navigated to:', url);
-            }
-        });
-    </script>
-</head>
+ </head>
 <body>
     <h1>ɴᴇᴡꜱng</h1>
     <hr>
